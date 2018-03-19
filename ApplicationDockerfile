@@ -4,15 +4,14 @@ ENV DOMAIN domain1
 ENV LIB /opt/payara41/glassfish/domains/${DOMAIN}/lib/
 ENV DEPLOY ${PAYARA_PATH}/glassfish/domains/${DOMAIN}/autodeploy/
 
-ADD app-order/target/web/WEB-INF/lib/ ${LIB}
-ADD app-email/target/web/WEB-INF/lib/ ${LIB}
-ADD app-credit-card/target/web/WEB-INF/lib/ ${LIB}
-
-#   CREATE TOPIC
-RUN bin/asadmin ...
-
+ADD app-order/target/app-order/WEB-INF/lib/ ${LIB}
+ADD app-email/target/app-email/WEB-INF/lib/ ${LIB}
+ADD app-credit-card/target/app-credit-card/WEB-INF/lib/ ${LIB}
 
 ENTRYPOINT $PAYARA_PATH/bin/asadmin start-domain --verbose ${DOMAIN}
 ADD app-order/target/app-order.war ${DEPLOY}
 ADD app-email/target/app-email.war ${DEPLOY}
 ADD app-credit-card/target/app-credit-card.war ${DEPLOY}
+
+#   CREATE TOPIC
+RUN asadmin create-jms-resource --restype javax.jms.Topic --property Name=Pedidos java:global/jms/Pedidos
