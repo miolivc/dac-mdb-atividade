@@ -17,7 +17,7 @@ import javax.jms.Topic;
 @Stateless
 public class ProcessaPedido {
     
-    @Resource("jms/Pedidos")
+    @Resource("java:global/jms/Pedidos")
     private Topic topic;
     
     @Inject
@@ -26,6 +26,7 @@ public class ProcessaPedido {
     public void enviarParaProcessamento(Pedido pedido) {
         JMSProducer producer = context.createProducer();
         producer.setProperty("destiny", "credit");
+        producer.setProperty("typeEmail", "messageProcess");
         producer.send(topic, pedido);
     }
 }

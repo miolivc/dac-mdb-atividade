@@ -50,7 +50,6 @@ public class ProcessCreditCard implements MessageListener {
     @Override
     public void onMessage(Message message) {
         try {
-            JMSConsumer consumer = context.createConsumer(topic);
             JMSProducer producer = context.createProducer();
                     
             Pedido pedido = message.getBody(Pedido.class);
@@ -61,6 +60,7 @@ public class ProcessCreditCard implements MessageListener {
                 // Mensagem de sucesso
                 producer.setProperty("confirmacao", false);
             }
+            producer.setProperty("typeEmail", "confirmacao");
             producer.send(topic, pedido);
         } catch (JMSException ex) {
             Logger.getLogger(ProcessCreditCard.class.getName()).log(Level.SEVERE, null, ex);

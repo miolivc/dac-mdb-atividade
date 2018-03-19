@@ -51,4 +51,10 @@ public class Cliente implements Serializable {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente " + "id=" + id + ", nome=" + nome + ", email=" + email + "\n";
+    }
+
+    
 }

@@ -49,4 +49,9 @@ public class Produto implements Serializable {
         this.preco = preco;
     }
 
+    @Override
+    public String toString() {
+        return "Produto: id=" + id + ", descricao=" + descricao + ", preco=" + preco + "\n";
+    }
+
 }
