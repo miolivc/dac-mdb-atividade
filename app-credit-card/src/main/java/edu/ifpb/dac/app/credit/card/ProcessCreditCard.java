@@ -40,7 +40,7 @@ import javax.jms.Topic;
 
 public class ProcessCreditCard implements MessageListener {
 
-    @Resource("jms/Pedidos")
+    @Resource(lookup = "jms/Pedidos")
     private Topic topic;
     @Inject
     private JMSContext context;
