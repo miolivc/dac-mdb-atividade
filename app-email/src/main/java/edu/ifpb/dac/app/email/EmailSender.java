@@ -69,7 +69,7 @@ public class EmailSender implements MessageListener{
             email.setAuthenticator(new DefaultAuthenticator(EMAIL, SENHA));
             email.setTLS(true);
             email.setSSL(true);
-            email.setFrom(EMAIL);
+            email.setFrom(pedido.getCliente().getEmail());
             
             if (args.length == 0) {
                 email.setSubject(String.format("NOVO PEDIDO EM PROCESSAMENTO", pedido.getId()));

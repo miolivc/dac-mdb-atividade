@@ -1,2 +1,3 @@
-/app-order/target/
-/app-shared/target/
+**/target/
+*.iml
+**/nb-configuration.xml
