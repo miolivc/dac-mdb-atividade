@@ -1,6 +1,7 @@
 
 package edu.ifpb.dac.service;
 
+import edu.ifpb.dac.entidade.Cliente;
 import edu.ifpb.dac.entidade.Pedido;
 import edu.ifpb.dac.entidade.Produto;
 import edu.ifpb.dac.infra.PedidoDao;
@@ -34,6 +35,10 @@ public class Carrinho {
     
     public Pedido verCarrinho() {
         return pedido;
+    }
+    
+    public void adicionarCliente(Cliente cliente) {
+        pedido.setCliente(cliente);
     }
     
     public String finalizarCarrinho() {

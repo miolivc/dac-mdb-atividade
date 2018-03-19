@@ -5,7 +5,9 @@
  */
 package edu.ifpb.dac.controlador;
 
+import edu.ifpb.dac.entidade.Cliente;
 import edu.ifpb.dac.entidade.Produto;
+import edu.ifpb.dac.infra.PedidoDao;
 import edu.ifpb.dac.service.Carrinho;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
@@ -22,6 +24,9 @@ public class CarrinhoController {
     
     @Inject
     private Carrinho carrinho;
+    @Inject
+    private PedidoDao pedidos;
+    private Cliente cliente = new Cliente();
     
     public String adicionar(Produto produto) {
         carrinho.adicionarProduto(produto);
@@ -29,8 +34,18 @@ public class CarrinhoController {
     }
     
     public String finalizarCompra() {
+        carrinho.adicionarCliente(cliente);
+        pedidos.adicionar(carrinho.verCarrinho());
         carrinho.finalizarCarrinho();
         return null;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
     
 }

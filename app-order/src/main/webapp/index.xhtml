@@ -47,6 +47,14 @@ and open the template in the editor.
             </h:column>
         </h:dataTable>
         <h:form>
+            <label for="nome">
+                Nome:
+                <h:inputText  id="nome" value="#{carrinhoController.cliente.nome}"></h:inputText>
+            </label>
+            <label for="email">
+                Email:
+                <h:inputText  id="email" value="#{carrinhoController.cliente.email}"></h:inputText>
+            </label>
             <h:commandButton action="#{carrinhoController.finalizarCompra()}" value="Finalizar Compra" />
         </h:form>
     </body>
