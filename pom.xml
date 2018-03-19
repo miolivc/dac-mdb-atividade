@@ -9,7 +9,8 @@
         <module>app-order</module>
     <module>app-email</module>
     <module>app-credit-card</module>
-  </modules>
+        <module>app-shared</module>
+    </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>

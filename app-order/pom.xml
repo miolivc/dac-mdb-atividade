@@ -16,9 +16,9 @@
     
     <dependencies>
         <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>eclipselink</artifactId>
-            <version>2.5.2</version>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>app-shared</artifactId>
+            <version>1</version>
         </dependency>
         <dependency>
             <groupId>javax</groupId>

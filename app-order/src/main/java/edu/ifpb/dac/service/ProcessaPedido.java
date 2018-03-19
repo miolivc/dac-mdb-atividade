@@ -1,6 +1,7 @@
 package edu.ifpb.dac.service;
 
 import edu.ifpb.dac.entidade.Pedido;
+import java.util.Arrays;
 import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -24,6 +25,7 @@ public class ProcessaPedido {
     
     public void enviarParaProcessamento(Pedido pedido) {
         JMSProducer producer = context.createProducer();
+        producer.setProperty("destiny", "credit");
         producer.send(topic, pedido);
     }
 }
