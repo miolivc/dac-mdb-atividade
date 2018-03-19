@@ -1,0 +1,47 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.ifpb.dac.controlador;
+
+import edu.ifpb.dac.entidade.Produto;
+import edu.ifpb.dac.infra.ProdutoDao;
+import java.util.Collections;
+import java.util.List;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
+
+/**
+ *
+ * @author alexalins
+ * @author miolivc
+ */
+@Named
+@RequestScoped
+public class ProdutoController {
+    
+    @Inject
+    private ProdutoDao produtos;
+    private Produto produto = new Produto();
+    
+    public List<Produto> todosOsProdutos() {
+        return Collections.unmodifiableList(produtos.listar());
+    }
+    
+    public String adicionarProduto() {
+        produtos.adicionar(produto);
+        produto = new Produto();
+        return null;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+    
+}

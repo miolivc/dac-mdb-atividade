@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h1>Cadastro de Produto</h1>
+        <h:form>
+            <label for="descricao">Descricao:
+                <h:inputText id="descricao" value="#{produtoController.produto.descricao}"></h:inputText>
+            </label>
+            <label for="preco">Preco:
+                <h:inputText id="preco" value="#{produtoController.produto.preco}"></h:inputText>
+            </label>
+            <h:commandButton value="Cadastrar" action="#{produtoController.adicionarProduto()}"></h:commandButton>
+        </h:form>
+        <hr/>
+        <h1>Realizar Compra</h1>
+        <h:dataTable value="#{produtoController.todosOsProdutos()}" var="produto">
+            <h:column>
+                <f:facet name="header">ID</f:facet>
+                #{produto.id}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Descricao</f:facet>
+                #{produto.descricao}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Preco</f:facet>
+                #{produto.preco}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Ações</f:facet>
+                <h:form>
+                    <h:commandButton value="Adicionar ao Carrinho" 
+                        action="#{carrinhoController.adicionar(produto)}"></h:commandButton>
+                </h:form>
+            </h:column>
+        </h:dataTable>
+        <h:form>
+            <h:commandButton action="#{carrinhoController.finalizarCompra()}" value="Finalizar Compra" />
+        </h:form>
+    </body>
+</html>

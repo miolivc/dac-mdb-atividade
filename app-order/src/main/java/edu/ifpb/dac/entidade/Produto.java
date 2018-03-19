@@ -1,4 +1,4 @@
-package edu.ifpb.dac;
+package edu.ifpb.dac.entidade;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
