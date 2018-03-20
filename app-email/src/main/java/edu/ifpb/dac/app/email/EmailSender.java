@@ -18,7 +18,7 @@ import org.apache.commons.mail.EmailException;
  * @author miolivc
  */
 @MessageDriven(
-    mappedName = "java:global/jms/Pedidos",
+    mappedName = "jms/Pedidos",
     activationConfig = {
         @ActivationConfigProperty(propertyName = "destinationType",
             propertyValue = "javax.jms.Topic"),

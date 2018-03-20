@@ -27,7 +27,7 @@ import javax.jms.Topic;
  */
 
 @MessageDriven(
-        mappedName = "java:global/jms/Pedidos",
+        mappedName = "jms/Pedidos",
         activationConfig ={
             @ActivationConfigProperty(propertyName = "destinationType",
                     propertyValue = "javax.jms.Topic"),

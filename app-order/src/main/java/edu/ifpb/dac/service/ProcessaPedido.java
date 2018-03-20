@@ -17,7 +17,7 @@ import javax.jms.Topic;
 @Stateless
 public class ProcessaPedido {
     
-    @Resource(lookup = "java:global/jms/Pedidos")
+    @Resource(lookup = "jms/Pedidos")
     private Topic topic;
     
     @Inject
