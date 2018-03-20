@@ -1,16 +1,17 @@
 FROM payara/server-full
 
-ENV DOMAIN domain1
-ENV LIB /opt/payara41/glassfish/domains/${DOMAIN}/lib/
-ENV DEPLOY ${PAYARA_PATH}/glassfish/domains/${DOMAIN}/autodeploy/
+ENV ADMIN_USER admin
+ENV ADMIN_PASSWORD admin
+ENV LIB /opt/payara41/glassfish/domains/domain1/lib/
 
 ADD app-order/target/app-order/WEB-INF/lib/ ${LIB}
 ADD app-email/target/app-email/WEB-INF/lib/ ${LIB}
 ADD app-credit-card/target/app-credit-card/WEB-INF/lib/ ${LIB}
 
-RUN $PAYARA_PATH/bin/asadmin start-domain --verbose ${DOMAIN} && \
-	$PAYARA_PATH/bin/asadmin create-jms-resource --restype javax.jms.Topic --property Name=Pedidos jms/Pedidos
+RUN $PAYARA_PATH/bin/asadmin start-domain && \
+$PAYARA_PATH/bin/asadmin --user $ADMIN_USER --passwordfile=/opt/pwdfile create-jms-resource --restype javax.jms.Topic --property Name=Pedidos jms/Pedidos 
 
-ADD app-order/target/app-order.war ${DEPLOY}
-ADD app-email/target/app-email.war ${DEPLOY}
-ADD app-credit-card/target/app-credit-card.war ${DEPLOY}
+COPY app-order/target/app-order.war $PAYARA_PATH/glassfish/domains/domain1/autodeploy
+COPY app-email/target/app-email.war $PAYARA_PATH/glassfish/domains/domain1/autodeploy
+COPY app-credit-card/target/app-credit-card.war $PAYARA_PATH/glassfish/domains/domain1/autodeploy
+EXPOSE 4848 8009 9009 8080 8181

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package edu.ifpb.dac.controlador;
 
 import edu.ifpb.dac.entidade.Produto;
@@ -25,7 +21,7 @@ public class ProdutoController {
     @Inject
     private ProdutoDao produtos;
     private Produto produto = new Produto();
-    
+
     public List<Produto> todosOsProdutos() {
         return Collections.unmodifiableList(produtos.listar());
     }

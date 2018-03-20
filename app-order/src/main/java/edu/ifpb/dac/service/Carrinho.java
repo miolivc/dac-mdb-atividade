@@ -6,6 +6,7 @@ import edu.ifpb.dac.entidade.Pedido;
 import edu.ifpb.dac.entidade.Produto;
 import edu.ifpb.dac.infra.PedidoDao;
 import java.math.BigDecimal;
+import java.util.List;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
 
@@ -40,10 +41,15 @@ public class Carrinho {
     public void adicionarCliente(Cliente cliente) {
         pedido.setCliente(cliente);
     }
+
+    public List<Produto> verItensCarrinho() {
+        return pedido.getProdutos();
+    }
     
     public String finalizarCarrinho() {
         pedidoDao.adicionar(pedido);
         processaPedido.enviarParaProcessamento(pedido);
+        this.pedido = new Pedido();
         return null;
     }
 }
