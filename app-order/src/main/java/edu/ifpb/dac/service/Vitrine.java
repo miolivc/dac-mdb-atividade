@@ -8,7 +8,7 @@ import java.util.Random;
 import javax.ejb.ConcurrencyManagement;
 import javax.ejb.ConcurrencyManagementType;
 import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.ejb.Singleton;
 
 @Singleton
 @ConcurrencyManagement(ConcurrencyManagementType.CONTAINER)
