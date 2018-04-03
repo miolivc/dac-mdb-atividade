@@ -2,6 +2,7 @@
 package edu.ifpb.dac.service;
 
 import edu.ifpb.dac.entidade.Cliente;
+import edu.ifpb.dac.entidade.ItemPedido;
 import edu.ifpb.dac.entidade.Pedido;
 import edu.ifpb.dac.entidade.Produto;
 import edu.ifpb.dac.infra.PedidoDao;
@@ -42,7 +43,7 @@ public class Carrinho {
         pedido.setCliente(cliente);
     }
 
-    public List<Produto> verItensCarrinho() {
+    public List<ItemPedido> verItensCarrinho() {
         return pedido.getProdutos();
     }
     

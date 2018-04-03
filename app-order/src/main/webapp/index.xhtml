@@ -8,17 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
-        <h1>Vitrine</h1>
-        <section>
-            <h2>Produto: #{vitrineController.produto.descricao}</h2>
-            <p>Valor: #{vitrineController.produto.preco}</p>
-            <h:form>
-                <h:commandButton value="Adicionar ao Carrinho" 
-                                 action="#{carrinhoController.adicionarItem(produto)}"
-                                 actionListener="#{vitrineController.atualizarVitrine()}"/>
-            </h:form>
-        </section>
-        <hr/>
+        
         <h1>Produtos da Loja</h1>
         <h:dataTable value="#{produtoController.todosOsProdutos()}" var="produto">
             <h:column>
@@ -43,27 +33,38 @@
         </h:dataTable>
         <hr/>
         <h1>Itens do carrinho</h1>
-        <h:dataTable value="#{carrinhoController.itensCarrinho()}" var="produto">
+        <h:dataTable value="#{carrinhoController.itensCarrinho()}" var="itemPedido">
             <h:column>
                 <f:facet name="header">ID</f:facet>
-                    #{produto.id}
+                    #{itemPedido.produto.id}
             </h:column>
             <h:column>
                 <f:facet name="header">Descricao</f:facet>
-                    #{produto.descricao}
+                    #{itemPedido.produto.descricao}
             </h:column>
             <h:column>
                 <f:facet name="header">Preco</f:facet>
-                    #{produto.preco}
+                    #{itemPedido.produto.preco}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Quantidade</f:facet>
+                    #{itemPedido.quantidade}
+            </h:column>
+            <h:column>
+                <f:facet name="header">Valor Total</f:facet>
+                    #{itemPedido.preco}
             </h:column>
             <h:column>
                 <f:facet name="header">Ações</f:facet>
                 <h:form>
-                    <h:commandButton value="Adicionar ao Carrinho" 
-                                     action="#{carrinhoController.removerItem(produto)}"/>
+                    <h:commandButton value="Remover do Carrinho" 
+                            action="#{carrinhoController.removerItem(itemPedido.produto)}"/>
                 </h:form>
             </h:column>
         </h:dataTable>
+        <br/>
+        <h2><h:outputText value="Valor Total do Carrinho: #{carrinhoController.valorCompra()}"/></h2>
+        <br/>
         <h:form>
             <label for="nome">
                 Nome:

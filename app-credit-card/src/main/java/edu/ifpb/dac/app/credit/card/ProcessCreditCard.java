@@ -25,14 +25,15 @@ import javax.jms.Topic;
  * @author alexalins
  * @author miolivc
  */
-
 @MessageDriven(
         mappedName = "jms/Pedidos",
-        activationConfig ={
+        activationConfig = {
             @ActivationConfigProperty(propertyName = "destinationType",
-                    propertyValue = "javax.jms.Topic"),
+                    propertyValue = "javax.jms.Topic")
+            ,
             @ActivationConfigProperty(propertyName = "destinationName",
-                    propertyValue = "topic"),
+                    propertyValue = "topic")
+            ,
             @ActivationConfigProperty(propertyName = "messageSelector",
                     propertyValue = "destiny = 'credit'")
         })
@@ -43,20 +44,20 @@ public class ProcessCreditCard implements MessageListener {
     private Topic topic;
     @Inject
     private JMSContext context;
-    
+
     private BigDecimal limiteCartao = new BigDecimal(500);
-    
+
     @Override
     public void onMessage(Message message) {
         try {
             JMSProducer producer = context.createProducer();
-                    
+
             Pedido pedido = message.getBody(Pedido.class);
             if (pedido.valorPedido().compareTo(limiteCartao) == -1) {
-                // Mensagem de erro
+                // Mensagem de sucesso
                 producer.setProperty("confirmacao", true);
             } else {
-                // Mensagem de sucesso
+                // Mensagem de erro
                 producer.setProperty("confirmacao", false);
             }
             producer.setProperty("typeEmail", "confirmacao");
@@ -65,5 +66,5 @@ public class ProcessCreditCard implements MessageListener {
             Logger.getLogger(ProcessCreditCard.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }

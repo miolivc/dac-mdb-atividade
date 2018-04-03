@@ -5,6 +5,7 @@
     <class>edu.ifpb.dac.entidade.Cliente</class>
     <class>edu.ifpb.dac.entidade.Pedido</class>
     <class>edu.ifpb.dac.entidade.Produto</class>
+    <class>edu.ifpb.dac.entidade.ItemPedido</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.schema-generation.database.action" value="create"/>
