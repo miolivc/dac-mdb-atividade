@@ -23,7 +23,9 @@ public class ItemPedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "item_pedido_seq")
     private int id;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    
+    @Id
+    @OneToOne
     private Produto produto;
     private BigDecimal quantidade = BigDecimal.ONE;;
 

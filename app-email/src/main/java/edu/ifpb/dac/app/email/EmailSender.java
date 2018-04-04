@@ -67,6 +67,7 @@ public class EmailSender implements MessageListener{
             Email email = new SimpleEmail();
             email.setHostName("smtp.googlemail.com");
             email.setAuthenticator(new DefaultAuthenticator(EMAIL, SENHA));
+//            email.setSmtpPort(587);
             email.setTLS(true);
             email.setSSL(true);
             email.setFrom(EMAIL);
@@ -87,7 +88,7 @@ public class EmailSender implements MessageListener{
             email.setMsg(pedido.toString());
             email.send();
         } catch (EmailException ex) {
-            System.err.println("Erro ao mandar email: " + ex);
+            System.err.println("Erro ao mandar email: " + ex.getLocalizedMessage());
         }
     }
 }

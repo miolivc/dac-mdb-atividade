@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <head>
+        <title>Lojinha Legal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <h1>Cadastro de Produto</h1>
+        <hr/>
+        <h:form>
+            <label for="descricao">Descricao:
+                <h:inputText id="descricao" value="#{produtoController.produto.descricao}"/>
+            </label><br/>
+            <label for="preco">Preco:
+                <h:inputText id="preco" value="#{produtoController.produto.preco}"/>
+            </label><br/>
+            <h:commandButton value="Cadastrar" action="#{produtoController.adicionarProduto()}"/>
+        </h:form>
+    </body>
+
+</html>

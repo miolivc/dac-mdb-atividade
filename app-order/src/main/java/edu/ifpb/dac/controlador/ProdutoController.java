@@ -29,7 +29,7 @@ public class ProdutoController {
     public String adicionarProduto() {
         produtos.adicionar(produto);
         produto = new Produto();
-        return null;
+        return "../index.html";
     }
 
     public Produto getProduto() {

@@ -25,6 +25,6 @@ public class PedidoDao {
     }
     
     public List<Pedido> listar() {
-        return manager.createQuery("SELECT p FROM Pedido p").getResultList();
+        return manager.createQuery("SELECT p FROM Pedido p", Pedido.class).getResultList();
     }
 }

@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,12 +24,10 @@ public class Pedido implements Serializable {
     @GeneratedValue
     private int id;
 
-    @Id
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<ItemPedido> produtos = new ArrayList<>();
-    ;
 
-    @ManyToOne
+    @OneToOne
     private Cliente cliente;
 
     public Pedido() {
@@ -78,18 +77,17 @@ public class Pedido implements Serializable {
                 .filter((p) -> (p.getProduto().equals(produto)))
                 .collect(Collectors.toList());
 
-        if (!collect.isEmpty()) {
+        if (! collect.isEmpty()) {
             ItemPedido remover = null;
 
             for (ItemPedido p : produtos) {
-                if (p.getProduto().equals(produto)) {
+                if (p.getProduto().getId() == produto.getId()) {
                     if (p.getQuantidade().compareTo(BigDecimal.ONE) == 1) {
-                        p.setQuantidade(p.getQuantidade().min(BigDecimal.ONE));
-                        break;
+                        p.setQuantidade(p.getQuantidade().subtract(BigDecimal.ONE));
                     } else {
                         remover = p;
-                        break;
                     }
+                    break;
                 }
             }
 
