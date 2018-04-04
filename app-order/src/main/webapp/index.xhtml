@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <h:outputText value="Produto: #{vitrineController.show().descricao}"/>
         <h1>Produtos da Loja</h1>
         <h:dataTable value="#{produtoController.todosOsProdutos()}" var="produto">
             <h:column>

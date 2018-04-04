@@ -17,7 +17,7 @@ public class ClienteController {
     
     public String salvarCliente() {
         clientes.adicionar(cliente);
-        return "../index.html";
+        return UrlDispatcher.dispatch("index.html");
     }
 
     public Cliente getCliente() {
